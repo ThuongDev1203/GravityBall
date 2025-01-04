@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     public GameObject startUI; // UI Start Game
     public GameObject gameOverUI; // UI Game Over

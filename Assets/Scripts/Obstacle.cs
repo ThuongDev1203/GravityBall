@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public GameController gameController; // Đối tượng GameController
+    UIManager uIManager; // Đối tượng uIManager
 
     void Start()
     {
-        gameController = FindObjectOfType<GameController>(); // Tìm đối tượng GameController
+        uIManager = FindObjectOfType<UIManager>(); // Tìm đối tượng UIManager
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) // Kiểm tra nếu nhân vật va chạm
         {
-            gameController.GameOver(); // Kết thúc game
+            uIManager.GameOver(); // Kết thúc game
         }
     }
 }
