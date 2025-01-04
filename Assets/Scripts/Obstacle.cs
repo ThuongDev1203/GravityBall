@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    UIManager uIManager; // Đối tượng uIManager
+    UIManager uIManager; // Đối tượng UIManager
 
     void Start()
     {

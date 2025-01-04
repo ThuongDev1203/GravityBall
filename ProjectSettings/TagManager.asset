@@ -6,6 +6,8 @@ TagManager:
   tags:
   - leftBoundary
   - rightBoundary
+  - CheckObstacel
+  - Obstacle
   layers:
   - Default
   - TransparentFX

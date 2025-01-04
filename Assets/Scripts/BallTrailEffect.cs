@@ -1,18 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BallTrailEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TrailRenderer trailRenderer;       // Tham chiếu đến Trail Renderer
+    public ParticleSystem particle;    // Tham chiếu đến Particle System
+    private Rigidbody2D rb;                  // Rigidbody của bóng
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+
+        // Đảm bảo Trail Renderer và Particle System đã được tham chiếu
+        if (trailRenderer == null) trailRenderer = GetComponent<TrailRenderer>();
+        if (particle == null) particle = GetComponentInChildren<ParticleSystem>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Kiểm tra tốc độ bóng
+        if (rb.velocity.magnitude > 0.1f)
+        {
+            // Khi bóng di chuyển
+            if (!trailRenderer.emitting)
+            {
+                trailRenderer.emitting = true; // Bật Trail Renderer
+            }
+            if (particle.isPlaying)
+            {
+                particle.Stop(); // Tắt Particle System
+            }
+        }
+        else
+        {
+            // Khi bóng đứng yên
+            if (trailRenderer.emitting)
+            {
+                trailRenderer.emitting = false; // Tắt Trail Renderer
+            }
+            if (!particle.isPlaying)
+            {
+                particle.Play(); // Bật Particle System
+            }
+        }
     }
 }

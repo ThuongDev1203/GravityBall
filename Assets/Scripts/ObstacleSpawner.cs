@@ -12,23 +12,19 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        // Gọi hàm SpawnObstacle liên tục
+        // Gọi hàm SpawnObstacle sau mỗi khoảng thời gian spawnInterval
         InvokeRepeating(nameof(SpawnObstacle), 0f, spawnInterval);
     }
 
     void SpawnObstacle()
     {
-        // Chọn ngẫu nhiên vị trí X trong phạm vi cho trước
-        float randomX = Random.Range(spawnRangeXMin, spawnRangeXMax);
+        float randomX = Random.Range(spawnRangeXMin, spawnRangeXMax); // Chọn ngẫu nhiên vị trí X trong phạm vi cho trước
 
-        // Tạo vị trí spawn ở ngoài màn hình (Y phía trên)
-        Vector2 spawnPosition = new Vector2(randomX, spawnYPosition);
+        Vector2 spawnPosition = new Vector2(randomX, spawnYPosition); // Tạo vị trí spawn ở ngoài màn hình (Y phía trên)
 
-        // Tạo chướng ngại vật tại vị trí đã chọn
-        GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+        GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity); // Tạo chướng ngại vật tại vị trí đã chọn
 
-        // Thêm động lực di chuyển xuống dưới (theo trục Y)
-        Rigidbody2D rb = obstacle.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = obstacle.GetComponent<Rigidbody2D>(); // Thêm động lực di chuyển xuống dưới (theo trục Y)
         if (rb != null)
         {
             rb.velocity = new Vector2(0f, -5f);  // Thay đổi giá trị này để điều chỉnh tốc độ rơi xuống

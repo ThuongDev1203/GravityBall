@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,21 +8,29 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        // Dừng toàn bộ game (vật lý, animation, chuyển động, v.v.)
-        Time.timeScale = 0;
+        Time.timeScale = 0; // Dừng toàn bộ game (vật lý, animation, chuyển động, v.v.)
     }
 
     public void StartGame()
     {
-        // Ẩn UI Start Game
-        startUI.SetActive(false);
+        startUI.SetActive(false); // Ẩn UI Start Game
         Time.timeScale = 1; // Bắt đầu game
     }
 
     public void GameOver()
     {
-        // Hiển thị UI Game Over
-        gameOverUI.SetActive(true);
+        gameOverUI.SetActive(true); // Hiển thị UI Game Over
         Time.timeScale = 0; // Dừng game
+
+        // Cập nhật điểm BestScore khi trò chơi kết thúc
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EndGame();
+        }
+    }
+
+    public void Home()
+    {
+        SceneManager.LoadScene("MainGame");
     }
 }
