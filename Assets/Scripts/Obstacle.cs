@@ -11,7 +11,7 @@ public class Obstacle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) // Kiểm tra nếu nhân vật va chạm
+        if (collision.gameObject.CompareTag("Ball")) // Kiểm tra nếu nhân vật va chạm
         {
             uIManager.GameOver(); // Kết thúc game
         }

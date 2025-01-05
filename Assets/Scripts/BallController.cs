@@ -15,6 +15,12 @@ public class BallController : MonoBehaviour
     private bool isMoving = false;  // Kiểm tra xem quả bóng có đang di chuyển không
     private Vector2 targetPosition; // Vị trí mục tiêu quả bóng cần di chuyển tới
 
+    AudioManager audioManager; // AudioManager để phát âm thanh
+
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); // Tìm AudioManager trong Scene
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +48,8 @@ public class BallController : MonoBehaviour
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);  // Lấy vị trí của chuột
             touchPosition.z = 0;
 
+            audioManager.PlaySFXSound(audioManager.jumpSound); // Phát âm thanh khi tap
+
             // Nếu người chơi nhấn bên phải quả bóng
             if (touchPosition.x > transform.position.x)
             {
@@ -61,7 +69,7 @@ public class BallController : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);  // Di chuyển quả bóng về phía mục tiêu
 
-            // Sử dụng Vector2.Distance để kiểm tra xem quả bóng đã gần đến mục tiêu chưa
+            // Sử dụng Vector2.Distance để kiểm tra quả bóng đã gần đến mục tiêu
             if (Vector2.Distance(transform.position, targetPosition) < 0.1f)  // Điều chỉnh giá trị 0.1f nếu cần thiết
             {
                 isMoving = false;  // Dừng di chuyển

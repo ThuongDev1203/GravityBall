@@ -8,6 +8,8 @@ TagManager:
   - rightBoundary
   - CheckObstacel
   - Obstacle
+  - Ball
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Ball
+  - Obstacle
+  - BG
   - 
   - 
   - 
