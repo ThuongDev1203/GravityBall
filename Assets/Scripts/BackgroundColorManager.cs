@@ -56,7 +56,7 @@ public class BackgroundColorManager : MonoBehaviour
             yield return null;
         }
 
-        // Hoàn tất chuyển đổi
+        // Hoàn tất chuyển đổi màu
         spriteRenderer.color = nextColor;
         currentColorIndex = nextColorIndex;
         transitioning = false; // Kết thúc chuyển đổi
